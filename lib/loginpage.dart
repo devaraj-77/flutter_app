@@ -1,10 +1,19 @@
 import 'package:dev_project/Forgotpass.dart';
+import 'package:dev_project/Login.dart';
 import 'package:dev_project/Register.dart';
+import 'package:dev_project/Services.dart';
 import 'package:flutter/material.dart';
 
-class loginpage extends StatelessWidget {
+class loginpage extends StatefulWidget {
   loginpage({super.key});
 
+  @override
+  State<loginpage> createState() => _loginpageState();
+}
+
+class _loginpageState extends State<loginpage> {
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +31,7 @@ class loginpage extends StatelessWidget {
             ),
             SizedBox(height: 30),
             TextField(
+              controller: emailcontroller,
               decoration: InputDecoration(
                 filled: true,fillColor: const Color.fromARGB(255, 207, 203, 203),
                 border: OutlineInputBorder(borderRadius:BorderRadius.circular(50) ),
@@ -31,6 +41,7 @@ class loginpage extends StatelessWidget {
                ),
                SizedBox(height: 20,),
             TextField(
+              controller: passwordcontroller,
               obscureText: true,
               decoration: InputDecoration(filled: true,
               fillColor: const Color.fromARGB(255, 203, 201, 201),
@@ -41,7 +52,9 @@ class loginpage extends StatelessWidget {
             ),
             TextButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => Forgotpass()));}, child: Text("Forgot password")),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                signin(email: emailcontroller.text.trim(), password: passwordcontroller.text.trim(), context: context);
+              },
               child: Text(
                 "LOGIN",
                 style: TextStyle(
