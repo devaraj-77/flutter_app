@@ -1,7 +1,14 @@
 import 'package:dev_project/Splash.dart';
+import 'package:dev_project/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main()async {
+  
+
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
@@ -24,7 +31,7 @@ class MyApp extends StatelessWidget {
         // the command line to start the app).
         //
         // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
+        // state is not lost during the reload. To reset the state, use hotj
         // restart instead.
         //
         // This works for code too, not just values: Most code changes can be
